@@ -1,15 +1,15 @@
-import { KNIGHT_ADD, KNIGHT_DELETE, KNIGHT_SET_ERROR, KNIGHT_SET_VALUE } from "../constant/action-type"
+import { KNIGHT_ADD, KNIGHT_DELETE, KNIGHT_SET_AGE, KNIGHT_SET_ERROR, KNIGHT_SET_VALUE } from "../constant/action-type"
 import { v4 as uuid } from 'uuid';
 
 const initialKnightState = {
     id: uuid(),
     name: '',
+    age: 0,
     knights: [],
     error: ''
 }
 
 const knightReducer = (state = initialKnightState, action) => {
-    console.log(action)
     switch (action.type) {
 
         case KNIGHT_SET_VALUE:
@@ -40,7 +40,13 @@ const knightReducer = (state = initialKnightState, action) => {
                 error: action.payload
             }
 
-
+        case KNIGHT_SET_AGE:
+            return {
+                ...state,
+                age: action.payload,
+                error: ''
+            }
+            
         default:
             return state;
     }

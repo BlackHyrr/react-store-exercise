@@ -1,7 +1,9 @@
 import { useSelector } from 'react-redux';
+import './EntityList.css';
 
-const EntityList = ({ selector, entityName }) => {
+const EntityList = ({ selector, ageSelector, entityName }) => {
     const entities = useSelector(selector);
+    const age = ageSelector ? useSelector(ageSelector) : undefined;
 
     return (
         <>
@@ -10,7 +12,12 @@ const EntityList = ({ selector, entityName }) => {
                     <h2>{entityName}</h2>
                     <ul>
                         {entities.map((entity) => (
-                            <li key={entity.id}>{entity.name}</li>
+                            <li key={entity.id}>
+                                {entity.name}
+                                {age && ` (Age: ${age})`} {
+                                    entity.age && ` (Age: ${entity.age})`
+                                }
+                            </li>
                         ))}
                     </ul>
                 </div>

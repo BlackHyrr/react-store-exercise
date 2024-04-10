@@ -1,7 +1,7 @@
 import React from 'react';
 import EntityList from '../../components/EntityList';
-import { selectKnightError, selectKnightName, selectKnights } from '../../store/selectors';
-import { addKnight, setKnightError, setKnightName } from '../../store/action';
+import { selectKnightAge, selectKnightError, selectKnightName, selectKnights } from '../../store/selectors';
+import { addKnight, setKnightAge, setKnightError, setKnightName } from '../../store/action';
 import EntityInput from '../../components/EntityInput';
 
 const Knights = () => {
@@ -11,13 +11,15 @@ const Knights = () => {
             <EntityInput 
                 selectName={selectKnightName} 
                 selectEntities={selectKnights} 
+                selectAge={selectKnightAge}
                 selectError={selectKnightError} 
                 setNameAction={setKnightName} 
+                setAgeAction={setKnightAge} 
                 setErrorAction={setKnightError} 
                 addEntityAction={addKnight} 
                 entityName="Knight" 
             />
-            <EntityList selector={selectKnights} entityName="Knights" />
+            <EntityList selector={selectKnights} ageSelector={selectKnightAge} entityName="Knights" />
         </div>
     );
 };

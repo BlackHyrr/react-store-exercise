@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 const EntityInput = ({ 
     selectName, 
     selectEntities, 
+    selectAge,
     selectError, 
     setNameAction, 
+    setAgeAction,
     setErrorAction, 
     addEntityAction, 
     entityName 
@@ -14,10 +16,17 @@ const EntityInput = ({
 
     const name = useSelector(selectName)
     const entities = useSelector(selectEntities)
+    const age = selectAge ? useSelector(selectAge) : undefined
     const error = useSelector(selectError)
 
-    const handleChange = (e) => {
+    const handleNameChange = (e) => {
         dispatch(setNameAction(e.target.value))
+    }
+
+    const handleAgeChange = (e) => {
+        if (setAgeAction) {
+            dispatch(setAgeAction(e.target.value))
+        }
     }
 
     const handleEntitySubmit = () => {
@@ -36,8 +45,16 @@ const EntityInput = ({
                         type='text'
                         placeholder={`Enter the name for a ${entityName}`}
                         value={name}
-                        onChange={handleChange}
+                        onChange={handleNameChange}
                     />
+                    {selectAge && setAgeAction && (
+                        <input
+                            type='number'
+                            placeholder={`Enter the age for a ${entityName}`}
+                            value={age}
+                            onChange={handleAgeChange}
+                        />
+                    )}
                     <button
                         className={'start-btn'}
                         onClick={handleEntitySubmit}>Submit</button>

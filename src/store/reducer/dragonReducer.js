@@ -9,7 +9,6 @@ const initialDragonState = {
 }
 
 const dragonReducer = (state = initialDragonState, action) => {
-    console.log(action)
     switch (action.type) {
 
         case DRAGON_SET_VALUE:
