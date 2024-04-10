@@ -14,7 +14,6 @@ const rootReducer = combineReducers({
 const logMiddleware = (store) => (next) => (action) => {
     console.log('Action:', action)
     if (action.type !== LOG_ACTION) {
-        console.log('Action:', action)
         store.dispatch({
             type: LOG_ACTION,
             payload: {
