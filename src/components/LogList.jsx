@@ -1,16 +1,21 @@
 import { useSelector } from 'react-redux';
+import './LogList.css';
 
 const LogList = () => {
     const logs = useSelector(state => state.logs);
 
+    console.log(logs);
+
     return (
-        <ul>
-            {logs.map((log, index) => (
-                <li key={index}>
-                    {log.timestamp} - {log.name}
-                </li>
-            ))}
-        </ul>
+        <div className={'log-container'}>
+            <ul>
+                {logs.map((log, index) => (
+                    <li key={index}>
+                        {">>"} {log.timestamp} - {log.name} - {log.message}
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 }
 

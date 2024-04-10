@@ -8,30 +8,32 @@ function App() {
 
     return (
         <>
-            <header>
-                <nav>
-                    {RoutesList.map((route, index) => (
-                        route.header && (
-                            <NavLink
-                                className={({ isActive }) => isActive ? 'nav-link-active' : ''}
-                                key={index}
-                                to={generatePath(route.name)}
-                                exact={route.exact}
-                            >
-                                {route.name}
-                            </NavLink>
-                        )
-                    ))}
-                </nav>
-            </header>
-            <main>
-                <Routes>
-                    {RoutesList.map((_, index) => (
-                        <Route key={index} path={_.path} element={_.component} />
-                    ))}
-                </Routes>
-                <LogList />
-            </main>
+            <div className='container'>
+                <header>
+                    <nav>
+                        {RoutesList.map((route, index) => (
+                            route.header && (
+                                <NavLink
+                                    className={({ isActive }) => isActive ? 'nav-link-active' : ''}
+                                    key={index}
+                                    to={generatePath(route.name)}
+                                    exact={route.exact}
+                                >
+                                    {route.name}
+                                </NavLink>
+                            )
+                        ))}
+                    </nav>
+                </header>
+                <main>
+                    <Routes>
+                        {RoutesList.map((_, index) => (
+                            <Route key={index} path={_.path} element={_.component} />
+                        ))}
+                    </Routes>
+                </main>
+            </div>
+            <LogList />
         </>
     )
 }

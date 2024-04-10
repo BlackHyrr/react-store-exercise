@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 const initialKnightState = {
     id: uuid(),
     name: '',
-    age: 0,
+    age: '',
     knights: [],
     error: ''
 }
@@ -46,7 +46,7 @@ const knightReducer = (state = initialKnightState, action) => {
                 age: action.payload,
                 error: ''
             }
-            
+
         default:
             return state;
     }

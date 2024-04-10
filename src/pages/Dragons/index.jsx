@@ -1,23 +1,21 @@
 import React from 'react';
 import EntityList from '../../components/EntityList.jsx';
-import EntityInput from '../../components/EntityInput.jsx';
-import { addDragon, setDragonError, setDragonName } from "../../store/action/index.js";
-import { selectDragonError, selectDragonName, selectDragons } from "../../store/selectors/index.js";
+import { selectDragons } from "../../store/selectors/index.js";
+import DragonInput from '../../components/DragonInput.jsx';
 
 const Dragons = () => {
+
+    const renderDragons = (dragon) => (
+        <>
+            {dragon.name}
+        </>
+    );
+
     return (
         <div>
             <h1>List of Dragons</h1>
-            <EntityInput 
-                selectName={selectDragonName} 
-                selectEntities={selectDragons} 
-                selectError={selectDragonError} 
-                setNameAction={setDragonName} 
-                setErrorAction={setDragonError} 
-                addEntityAction={addDragon} 
-                entityName="Dragon" 
-            />
-            <EntityList selector={selectDragons} entityName="Dragons" />
+            <DragonInput/>
+            <EntityList selector={selectDragons} renderEntity={renderDragons} />
         </div>
     );
 };

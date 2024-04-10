@@ -4,6 +4,7 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import knightReducer from "./reducer/knightReducer.js";
 import { LOG_ACTION } from "./constant/action-type.js";
 import logReducer from "./reducer/logReducer.js";
+import { deepDiff } from "../utils/log.js";
 
 const rootReducer = combineReducers({
     dragons: dragonReducer,
@@ -12,19 +13,25 @@ const rootReducer = combineReducers({
 });
 
 const logMiddleware = (store) => (next) => (action) => {
-    console.log('Action:', action)
-    if (action.type !== LOG_ACTION) {
-        store.dispatch({
-            type: LOG_ACTION,
-            payload: {
-                timestamp: new Date().toISOString(),
-                name: action.type,
-            },
-        })
-    }
-    
+    const prevState = store.getState();
+    next(action);
+    const nextState = store.getState();
 
-    next(action)
+    if (action.type !== LOG_ACTION) {
+        const diff = deepDiff(prevState, nextState);
+
+        diff.forEach(({ path, oldValue, newValue }) => {
+
+            store.dispatch({
+                type: LOG_ACTION,
+                payload: {
+                    timestamp: new Date().toISOString(),
+                    name: action.type,
+                    message: `Property ${path} changed from ${JSON.stringify(oldValue)} to ${JSON.stringify(newValue)}`,
+                },
+            });
+        });
+    }
 }
 
 const store = createStore(
