@@ -2,6 +2,7 @@ import { NavLink, Routes, Route } from 'react-router-dom'
 import './App.css'
 import { generatePath } from './utils/generatePath'
 import RoutesList from './routesList'
+import LogList from './components/LogList'
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
                         <Route key={index} path={_.path} element={_.component} />
                     ))}
                 </Routes>
+                <LogList />
             </main>
         </>
     )

@@ -8,3 +8,5 @@ export const KNIGHT_ADD = 'KNIGHT/ADD';
 export const KNIGHT_SET_ERROR = 'KNIGHT/SET_ERROR';
 export const KNIGHT_SET_AGE = 'KNIGHT/SET_AGE';
 export const KNIGHT_DELETE = 'KNIGHT/DELETE';
+
+export const LOG_ACTION = 'LOG/LOG_ACTION';
